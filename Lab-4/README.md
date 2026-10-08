@@ -1,8 +1,24 @@
-# Space Invaders Game
+# Software Engineering Lab 4 — Space Invaders Submission
+**Student Name:** Samrudh Patil  
+**SRN:** PES1UG24CS417  
+**Course:** Software Engineering (Sem 5)  
 
-This project is a terminal-based Space Invaders clone using **Pygame**. It introduces students to interactive game design using object-oriented principles and real-time graphical rendering.
+## 📌 Deliverable Links
+- **Before Video (10s Bug Demo):** [Google Drive Link](https://drive.google.com/file/d/1R_IrPNGwi9eg_aFYdjUfJbezwhTbwlVu/view?usp=sharing)
+- **After Video (10s Full Features):** [Google Drive Link](https://drive.google.com/file/d/1jJZSjnTkJWDD3AQW97pUZ67wQdE-Kwy0/view?usp=sharing)
+- **Submission Report PDF:** [Lab4_PES1UG24CS417.pdf](../Lab4_PES1UG24CS417.pdf)
+
+## 📋 Task Commit History
+| Task | Commit Hash | Message | Description |
+| :--- | :---: | :--- | :--- |
+| **Task 1** | [`5e2575a`](https://github.com/Samrudh7-0045/SE-Labs-PES1UG24CS417/commit/5e2575a) | `Task 1: Fix bullet collision detection via shallow copy iteration` | Solved list mutation bug during iteration using `self.player_bullets[:]` |
+| **Task 2** | [`632e242`](https://github.com/Samrudh7-0045/SE-Labs-PES1UG24CS417/commit/632e242) | `Task 2: Implement graphical Game Over screen and final score display` | Added translucent modal dialog, GAME OVER title, and score display |
+| **Task 3** | [`ff39973`](https://github.com/Samrudh7-0045/SE-Labs-PES1UG24CS417/commit/ff39973) | `Task 3: Add replay options with Easy, Medium, and Hard difficulty presets` | Added difficulty presets (Easy, Medium, Hard), HUD badge, and replay hotkeys |
+| **Task 4** | [`ee8e464`](https://github.com/Samrudh7-0045/SE-Labs-PES1UG24CS417/commit/ee8e464) | `Task 4: Add retro 8-bit sound effects for shooting, enemy destroy, and game over` | Added synthesized 8-bit audio effects for firing, explosions, and game over |
 
 ---
+
+# Original Space Invaders Game Description
 
 ## What’s Provided
 
