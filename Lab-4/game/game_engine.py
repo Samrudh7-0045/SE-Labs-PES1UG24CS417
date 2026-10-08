@@ -3,6 +3,7 @@ import random
 from .player import Player
 from .enemy import EnemyGrid
 from .bullet import Bullet
+from .sound import SoundManager
 
 # Game Engine
 
@@ -52,6 +53,7 @@ class GameEngine:
         self.sub_font = pygame.font.SysFont("Arial", 22)
         self.game_over = False
         self.victory = False
+        self.sound_manager = SoundManager()
 
     def handle_event(self, event):
         if self.game_over:
@@ -74,6 +76,7 @@ class GameEngine:
                 self.player_bullets.append(
                     Bullet(bullet_x, self.player.y, direction=-1)
                 )
+                self.sound_manager.play_shoot()
                 self._shoot_cooldown = 15
 
     def handle_input(self):
@@ -133,32 +136,37 @@ class GameEngine:
         # ---------------------------------------------------------
         # TASK 1: FIX BULLET COLLISION
         # ---------------------------------------------------------
+        # Iterate over a copy of the bullet list so that removing
+        # a bullet does not cause the next bullet to be skipped.
         for bullet in self.player_bullets[:]:
             for enemy in self.enemy_grid.alive_enemies():
 
                 if bullet.rect().colliderect(enemy.rect()):
                     enemy.alive = False
-
                     self.player_bullets.remove(bullet)
-
                     self.score += 1
-
+                    self.sound_manager.play_enemy_hit()
                     break
 
         # Enemy bullet hits player
         for bullet in self.enemy_bullets:
             if bullet.rect().colliderect(self.player.rect()):
-                self.game_over = True
+                self.trigger_game_over(victory=False)
                 break
 
         # Enemies reached the player
         if self.enemy_grid.reached_bottom(self.player.y):
-            self.game_over = True
+            self.trigger_game_over(victory=False)
 
         # All enemies defeated
         if not self.enemy_grid.alive_enemies():
+            self.trigger_game_over(victory=True)
+
+    def trigger_game_over(self, victory=False):
+        if not self.game_over:
             self.game_over = True
-            self.victory = True
+            self.victory = victory
+            self.sound_manager.play_game_over()
 
     def reset_game(self, difficulty=None):
         if difficulty and difficulty in self.DIFFICULTIES:
