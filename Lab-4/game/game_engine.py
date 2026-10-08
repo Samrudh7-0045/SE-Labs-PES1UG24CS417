@@ -26,10 +26,21 @@ class GameEngine:
         self.enemy_fire_chance = 0.003
 
         self.score = 0
-        self.font = pygame.font.SysFont("Arial", 30)
+        self.font = pygame.font.SysFont("Arial", 28)
+        self.title_font = pygame.font.SysFont("Arial", 50, bold=True)
+        self.sub_font = pygame.font.SysFont("Arial", 22)
         self.game_over = False
+        self.victory = False
 
     def handle_event(self, event):
+        if self.game_over:
+            if event.type == pygame.KEYDOWN:
+                if event.key in (pygame.K_q, pygame.K_ESCAPE):
+                    pygame.event.post(pygame.event.Event(pygame.QUIT))
+                elif event.key == pygame.K_r:
+                    self.reset_game()
+            return
+
         if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
             if self._shoot_cooldown <= 0:
                 bullet_x = self.player.center_x() - 2
@@ -39,6 +50,9 @@ class GameEngine:
                 self._shoot_cooldown = 15
 
     def handle_input(self):
+        if self.game_over:
+            return
+
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_LEFT] or keys[pygame.K_a]:
@@ -92,8 +106,6 @@ class GameEngine:
         # ---------------------------------------------------------
         # TASK 1: FIX BULLET COLLISION
         # ---------------------------------------------------------
-        # Iterate over a copy of the bullet list so that removing
-        # a bullet does not cause the next bullet to be skipped.
         for bullet in self.player_bullets[:]:
             for enemy in self.enemy_grid.alive_enemies():
 
@@ -115,6 +127,21 @@ class GameEngine:
         # Enemies reached the player
         if self.enemy_grid.reached_bottom(self.player.y):
             self.game_over = True
+
+        # All enemies defeated
+        if not self.enemy_grid.alive_enemies():
+            self.game_over = True
+            self.victory = True
+
+    def reset_game(self):
+        self.player = Player(self.width // 2 - 20, self.height - 50, 40, 20)
+        self.enemy_grid = EnemyGrid(self.width)
+        self.player_bullets.clear()
+        self.enemy_bullets.clear()
+        self._shoot_cooldown = 0
+        self.score = 0
+        self.game_over = False
+        self.victory = False
 
     def render(self, screen):
         # Player
@@ -157,15 +184,34 @@ class GameEngine:
 
         screen.blit(score_text, (10, 10))
 
-        # Temporary game-over message
-        if self.game_over and not getattr(
-            self,
-            "_game_over_logged",
-            False
-        ):
-            print(
-                "Game over! Final score:",
-                self.score
-            )
+        # ---------------------------------------------------------
+        # TASK 2: GRAPHICAL GAME OVER SCREEN
+        # ---------------------------------------------------------
+        if self.game_over:
+            # 1. Dark semi-transparent overlay over the gameplay
+            overlay = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
+            overlay.fill((0, 0, 0, 190))
+            screen.blit(overlay, (0, 0))
 
-            self._game_over_logged = True
+            # 2. Centered dialog box
+            box_width, box_height = 440, 240
+            box_x = (self.width - box_width) // 2
+            box_y = (self.height - box_height) // 2
+            card_rect = pygame.Rect(box_x, box_y, box_width, box_height)
+            pygame.draw.rect(screen, (24, 24, 32), card_rect, border_radius=14)
+
+            accent_color = (80, 220, 100) if self.victory else RED
+            pygame.draw.rect(screen, accent_color, card_rect, width=3, border_radius=14)
+
+            # 3. Title text
+            title_text = "VICTORY!" if self.victory else "GAME OVER"
+            title_surf = self.title_font.render(title_text, True, accent_color)
+            screen.blit(title_surf, title_surf.get_rect(center=(self.width // 2, box_y + 55)))
+
+            # 4. Final score
+            score_surf = self.font.render(f"Final Score: {self.score}", True, WHITE)
+            screen.blit(score_surf, score_surf.get_rect(center=(self.width // 2, box_y + 115)))
+
+            # 5. Input prompt
+            sub_surf = self.sub_font.render("Press [R] to Play Again  |  [Q] to Quit", True, (200, 200, 200))
+            screen.blit(sub_surf, sub_surf.get_rect(center=(self.width // 2, box_y + 175)))
