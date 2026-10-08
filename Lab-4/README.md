@@ -6,7 +6,7 @@
 ## 📌 Deliverable Links
 - **Before Video (10s Bug Demo):** [Google Drive Link](https://drive.google.com/file/d/1R_IrPNGwi9eg_aFYdjUfJbezwhTbwlVu/view?usp=sharing)
 - **After Video (10s Full Features):** [Google Drive Link](https://drive.google.com/file/d/1jJZSjnTkJWDD3AQW97pUZ67wQdE-Kwy0/view?usp=sharing)
-- **Submission Report PDF:** [Lab4_PES1UG24CS417.pdf](../Lab4_PES1UG24CS417.pdf)
+- **Submission Report PDF:** [Lab4_PES1UG24CS417.pdf](./Lab4_PES1UG24CS417.pdf)
 
 ## 📋 Task Commit History
 | Task | Commit Hash | Message | Description |
