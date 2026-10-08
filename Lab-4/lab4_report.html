@@ -2,226 +2,171 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Software Engineering Lab 4 Report - PES1UG24CS417</title>
+<title>Software Engineering Lab 4</title>
 <style>
   @page {
     size: A4;
-    margin: 18mm 16mm 18mm 16mm;
+    margin: 20mm;
   }
   body {
-    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
-    color: #1a1a1a;
+    font-family: Calibri, 'Segoe UI', Arial, sans-serif;
+    color: #111111;
     line-height: 1.45;
-    font-size: 10.5pt;
+    font-size: 11pt;
     margin: 0;
     padding: 0;
   }
-  .header {
-    border-bottom: 2px solid #003366;
-    padding-bottom: 8px;
+  .title-block {
+    text-align: center;
+    border-bottom: 2px solid #222222;
+    padding-bottom: 10px;
     margin-bottom: 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
   }
-  .header-left h1 {
-    margin: 0;
-    color: #003366;
-    font-size: 18pt;
-    font-weight: 700;
-  }
-  .header-left h2 {
-    margin: 3px 0 0 0;
-    color: #444;
-    font-size: 11pt;
-    font-weight: 500;
-  }
-  .header-right {
-    text-align: right;
-    font-size: 9.5pt;
-    color: #333;
-  }
-  .meta-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    background: #f4f7fa;
-    border: 1px solid #d0dbe5;
-    border-radius: 6px;
-    padding: 10px 14px;
-    margin-bottom: 16px;
-    font-size: 10pt;
-  }
-  .meta-item strong {
-    color: #003366;
-  }
-  h3 {
-    color: #003366;
-    border-bottom: 1px solid #d0dbe5;
-    padding-bottom: 4px;
-    margin-top: 14px;
-    margin-bottom: 8px;
-    font-size: 12pt;
-  }
-  .links-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 14px;
-    font-size: 9.5pt;
-  }
-  .links-table th, .links-table td {
-    border: 1px solid #cbd5e1;
-    padding: 6px 10px;
-    text-align: left;
-  }
-  .links-table th {
-    background-color: #003366;
-    color: #ffffff;
-    font-weight: 600;
-  }
-  .links-table tr:nth-child(even) {
-    background-color: #f8fafc;
-  }
-  .links-table a {
-    color: #0056b3;
-    text-decoration: none;
-    word-break: break-all;
-  }
-  .task-box {
-    border: 1px solid #e2e8f0;
-    border-left: 4px solid #0056b3;
-    border-radius: 4px;
-    padding: 8px 12px;
-    margin-bottom: 12px;
-    background: #ffffff;
-    page-break-inside: avoid;
-  }
-  .task-box h4 {
+  .title-block h1 {
+    font-size: 16pt;
     margin: 0 0 4px 0;
-    color: #0f172a;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .title-block h2 {
+    font-size: 12pt;
+    margin: 0 0 8px 0;
+    font-weight: normal;
+    color: #333333;
+  }
+  .student-info {
     font-size: 11pt;
+    font-weight: bold;
+  }
+  h2.section-title {
+    font-size: 12pt;
+    font-weight: bold;
+    color: #111111;
+    border-bottom: 1px solid #cccccc;
+    padding-bottom: 3px;
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
+  h3.sub-title {
+    font-size: 11pt;
+    font-weight: bold;
+    color: #222222;
+    margin-top: 10px;
+    margin-bottom: 4px;
   }
   p {
-    margin: 4px 0;
+    margin: 4px 0 6px 0;
+  }
+  ul {
+    margin: 4px 0 8px 20px;
+    padding: 0;
+  }
+  li {
+    margin-bottom: 3px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 14px 0;
+    font-size: 10pt;
+  }
+  table, th, td {
+    border: 1px solid #888888;
+  }
+  th {
+    background-color: #f2f2f2;
+    padding: 6px 8px;
+    text-align: left;
+    font-weight: bold;
+  }
+  td {
+    padding: 5px 8px;
+    vertical-align: top;
   }
   pre {
-    background: #f1f5f9;
-    border: 1px solid #cbd5e1;
-    border-radius: 4px;
-    padding: 6px 10px;
-    font-family: 'Consolas', 'Courier New', monospace;
-    font-size: 8.5pt;
+    background: #f7f7f7;
+    border: 1px solid #cccccc;
+    padding: 6px 8px;
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 9pt;
     line-height: 1.35;
-    overflow-x: auto;
     margin: 6px 0;
-    color: #0f172a;
+    white-space: pre-wrap;
+    word-break: break-word;
   }
-  .badge {
-    display: inline-block;
-    padding: 2px 7px;
-    font-size: 8pt;
-    font-weight: 600;
-    border-radius: 10px;
-    background: #e0f2fe;
-    color: #0369a1;
-  }
-  .commit-badge {
-    background: #f0fdf4;
-    color: #15803d;
-    font-family: monospace;
-    padding: 2px 5px;
-    border-radius: 3px;
-    border: 1px solid #bbf7d0;
+  .page-break {
+    page-break-before: always;
   }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <div class="header-left">
-    <h1>PES UNIVERSITY</h1>
-    <h2>Department of Computer Science and Engineering &bull; Software Engineering Lab 4</h2>
-  </div>
-  <div class="header-right">
-    <strong>Academic Year:</strong> 2026&ndash;2027<br>
-    <strong>Semester:</strong> 5th Semester
-  </div>
+<div class="title-block">
+  <h1>Software Engineering Lab 4</h1>
+  <h2>Space Invaders: Debugging &amp; Feature Implementation</h2>
+  <div class="student-info">Name: Samrudh Patil &nbsp;&nbsp;|&nbsp;&nbsp; SRN: PES1UG24CS417</div>
 </div>
 
-<div class="meta-grid">
-  <div class="meta-item"><strong>Student Name:</strong> Samrudh Patil</div>
-  <div class="meta-item"><strong>SRN:</strong> PES1UG24CS417</div>
-  <div class="meta-item"><strong>Course:</strong> Software Engineering (UE22CS351A)</div>
-  <div class="meta-item"><strong>Assignment Topic:</strong> Space Invaders Debugging &amp; Enhancement</div>
-</div>
-
-<h3>1. Deliverables &amp; Submission Links</h3>
-<table class="links-table">
+<h2 class="section-title">1. Deliverable Links</h2>
+<table>
   <tr>
-    <th style="width: 28%;">Deliverable</th>
-    <th>Link / Details</th>
+    <th style="width: 32%;">Item</th>
+    <th>Link</th>
   </tr>
   <tr>
-    <td><strong>Before Video (10s Bug Demonstration)</strong></td>
-    <td><a href="https://drive.google.com/file/d/1R_IrPNGwi9eg_aFYdjUfJbezwhTbwlVu/view?usp=sharing" target="_blank">https://drive.google.com/file/d/1R_IrPNGwi9eg_aFYdjUfJbezwhTbwlVu/view?usp=sharing</a></td>
+    <td><strong>Before Video (10s Bug Clip)</strong></td>
+    <td><a href="https://drive.google.com/file/d/1R_IrPNGwi9eg_aFYdjUfJbezwhTbwlVu/view?usp=sharing">https://drive.google.com/file/d/1R_IrPNGwi9eg_aFYdjUfJbezwhTbwlVu/view?usp=sharing</a></td>
   </tr>
   <tr>
-    <td><strong>After Video (10s Full Features)</strong></td>
-    <td><a href="https://drive.google.com/file/d/1jJZSjnTkJWDD3AQW97pUZ67wQdE-Kwy0/view?usp=sharing" target="_blank">https://drive.google.com/file/d/1jJZSjnTkJWDD3AQW97pUZ67wQdE-Kwy0/view?usp=sharing</a></td>
+    <td><strong>After Video (10s Working Clip)</strong></td>
+    <td><a href="https://drive.google.com/file/d/1jJZSjnTkJWDD3AQW97pUZ67wQdE-Kwy0/view?usp=sharing">https://drive.google.com/file/d/1jJZSjnTkJWDD3AQW97pUZ67wQdE-Kwy0/view?usp=sharing</a></td>
   </tr>
   <tr>
     <td><strong>Assigned Starter Repository</strong></td>
-    <td><a href="https://github.com/SETAPESU26/46_space-invaders" target="_blank">https://github.com/SETAPESU26/46_space-invaders</a></td>
+    <td><a href="https://github.com/SETAPESU26/46_space-invaders">https://github.com/SETAPESU26/46_space-invaders</a></td>
   </tr>
   <tr>
-    <td><strong>Individual Lab Repository (Lab-4)</strong></td>
-    <td><a href="https://github.com/Samrudh7-0045/SE-Labs-PES1UG24CS417/tree/main/Lab-4" target="_blank">https://github.com/Samrudh7-0045/SE-Labs-PES1UG24CS417/tree/main/Lab-4</a></td>
-  </tr>
-  <tr>
-    <td><strong>Prompt Evidence / Chat History</strong></td>
-    <td>Public pair-programming interaction and prompt logs documented below in Section 4.</td>
+    <td><strong>Individual GitHub Repository</strong></td>
+    <td><a href="https://github.com/Samrudh7-0045/SE-Labs-PES1UG24CS417">https://github.com/Samrudh7-0045/SE-Labs-PES1UG24CS417</a></td>
   </tr>
 </table>
 
-<h3>2. Git Commit History in Repository (Lab-4 Folder)</h3>
-<p>In accordance with the lab handout instructions, the implementation was committed in distinct, progressive task commits:</p>
-<table class="links-table">
+<h2 class="section-title">2. Commit History (Lab-4 Folder)</h2>
+<p>Each required task was committed separately to the repository:</p>
+<table>
   <tr>
-    <th style="width: 15%;">Commit Hash</th>
+    <th style="width: 15%;">Commit</th>
     <th style="width: 25%;">Task</th>
-    <th>Description</th>
+    <th>Message</th>
   </tr>
   <tr>
-    <td><span class="commit-badge">5e2575a</span></td>
-    <td><strong>Task 1: Collision Fix</strong></td>
-    <td>Fix bullet collision detection via shallow copy iteration (<code>self.player_bullets[:]</code>)</td>
+    <td><code>5e2575a</code></td>
+    <td>Task 1</td>
+    <td>Task 1: Fix bullet collision detection via shallow copy iteration</td>
   </tr>
   <tr>
-    <td><span class="commit-badge">632e242</span></td>
-    <td><strong>Task 2: Game Over Screen</strong></td>
-    <td>Implement graphical Game Over screen, dark overlay modal, and final score display</td>
+    <td><code>632e242</code></td>
+    <td>Task 2</td>
+    <td>Task 2: Implement graphical Game Over screen and final score display</td>
   </tr>
   <tr>
-    <td><span class="commit-badge">ff39973</span></td>
-    <td><strong>Task 3: Replay &amp; Difficulty</strong></td>
-    <td>Add replay options with Easy, Medium, and Hard difficulty presets and HUD badge</td>
+    <td><code>ff39973</code></td>
+    <td>Task 3</td>
+    <td>Task 3: Add replay options with Easy, Medium, and Hard difficulty presets</td>
   </tr>
   <tr>
-    <td><span class="commit-badge">ee8e464</span></td>
-    <td><strong>Task 4: Sound Effects</strong></td>
-    <td>Add retro 8-bit sound effects for shooting, enemy destroy, and game over</td>
+    <td><code>ee8e464</code></td>
+    <td>Task 4</td>
+    <td>Task 4: Add retro 8-bit sound effects for shooting, enemy destroy, and game over</td>
   </tr>
 </table>
 
-<div style="page-break-before: always;"></div>
+<h2 class="section-title">3. Tasks Completed &amp; Code Snippets</h2>
 
-<h3>3. Detailed Task Implementation &amp; Code Snippets</h3>
-
-<div class="task-box">
-  <h4>Task 1: Refined Bullet Collision Detection <span class="badge">Fixed</span></h4>
-  <p><strong>Root Cause:</strong> The starter code looped over <code>for bullet in self.player_bullets:</code> while calling <code>self.player_bullets.remove(bullet)</code> inside the loop. In Python, modifying a list while iterating over it shifts all subsequent elements to the left by one index. Consequently, the loop's internal index counter skipped the bullet immediately following the deleted one, causing rapid-fired bullets to ghost clean through enemy aliens.</p>
-  <p><strong>Solution:</strong> Iterate over a shallow slice copy <code>self.player_bullets[:]</code>, allowing safe in-place removals from the master list without index skipping.</p>
-<pre><code># TASK 1: FIX BULLET COLLISION VIA SHALLOW COPY ITERATION
+<h3 class="sub-title">Task 1: Bullet Collision Detection Fix</h3>
+<p><strong>Bug:</strong> Bullets passed straight through enemies when shooting rapidly. The code was iterating over <code>self.player_bullets</code> while calling <code>self.player_bullets.remove(bullet)</code> inside the same loop. Modifying the list during iteration shifted index positions, skipping the next bullet.</p>
+<p><strong>Fix:</strong> Iterate over a shallow copy of the list using <code>self.player_bullets[:]</code> so removing items from the original list does not cause skipped bullets.</p>
+<pre># Iterate over shallow copy to avoid skipping elements
 for bullet in self.player_bullets[:]:
     for enemy in self.enemy_grid.alive_enemies():
         if bullet.rect().colliderect(enemy.rect()):
@@ -229,35 +174,33 @@ for bullet in self.player_bullets[:]:
             self.player_bullets.remove(bullet)
             self.score += 1
             self.sound_manager.play_enemy_hit()
-            break</code></pre>
-</div>
+            break</pre>
 
-<div class="task-box">
-  <h4>Task 2: Graphical Game Over Condition &amp; Score Screen <span class="badge">Enhanced</span></h4>
-  <p><strong>Problem:</strong> Previously, losing simply paused the frame updates and printed <code>"Game over!"</code> to the terminal.</p>
-  <p><strong>Solution:</strong> Implemented a graphical Pygame overlay using an alpha-blended surface (<code>pygame.SRCALPHA</code>) over the frozen game screen, featuring a centered modal card, prominent <code>"GAME OVER"</code> / <code>"VICTORY!"</code> banners, the final score, and responsive keyboard event listeners.</p>
-<pre><code>if self.game_over:
-    # 1. Dark semi-transparent overlay
+<div class="page-break"></div>
+
+<h3 class="sub-title">Task 2: Graphical Game Over Screen</h3>
+<p><strong>Bug/Limitation:</strong> In the starter code, when the player was hit or enemies reached the bottom, the window simply froze and printed the score to the console.</p>
+<p><strong>Fix:</strong> Added a graphical Game Over overlay rendered directly on the screen with a dark translucent background, GAME OVER / VICTORY text, final score display, and user input handling.</p>
+<pre>if self.game_over:
+    # Semi-transparent overlay
     overlay = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
     overlay.fill((0, 0, 0, 195))
     screen.blit(overlay, (0, 0))
 
-    # 2. Centered dialog box
+    # Centered modal box
     card_rect = pygame.Rect(box_x, box_y, box_width, box_height)
     pygame.draw.rect(screen, (24, 24, 34), card_rect, border_radius=14)
     pygame.draw.rect(screen, accent_color, card_rect, width=3, border_radius=14)
 
-    # 3. Title & Final Score
+    # Title & Final Score
     title_surf = self.title_font.render(title_text, True, accent_color)
     screen.blit(title_surf, title_surf.get_rect(center=(self.width // 2, box_y + 45)))
     score_surf = self.font.render(f"Final Score: {self.score}", True, WHITE)
-    screen.blit(score_surf, score_surf.get_rect(center=(self.width // 2, box_y + 95)))</code></pre>
-</div>
+    screen.blit(score_surf, score_surf.get_rect(center=(self.width // 2, box_y + 95)))</pre>
 
-<div class="task-box">
-  <h4>Task 3: Replay Option &amp; Difficulty Modes <span class="badge">Feature Added</span></h4>
-  <p><strong>Implementation:</strong> Configured 3 difficulty tiers altering enemy movement speed and projectile frequency. Integrated an in-game HUD difficulty badge and dedicated hotkeys (<code>[1] Easy</code>, <code>[2] Med</code>, <code>[3] Hard</code>, <code>[Q] Exit</code>) on the Game Over screen.</p>
-<pre><code>DIFFICULTIES = {
+<h3 class="sub-title">Task 3: Replay Option with Difficulty Settings</h3>
+<p><strong>Fix:</strong> Added 3 difficulty levels (Easy, Medium, Hard) that adjust enemy speed and fire rate. Added a difficulty badge on the HUD, and keys 1 (Easy), 2 (Medium), 3 (Hard) to restart on Game Over, or Q to exit.</p>
+<pre>DIFFICULTIES = {
     "Easy":   {"enemy_speed": 1.0, "fire_chance": 0.001, "color": (100, 220, 100)},
     "Medium": {"enemy_speed": 1.6, "fire_chance": 0.003, "color": (240, 200, 60)},
     "Hard":   {"enemy_speed": 2.5, "fire_chance": 0.007, "color": (255, 80, 80)},
@@ -267,67 +210,40 @@ def reset_game(self, difficulty=None):
     if difficulty and difficulty in self.DIFFICULTIES:
         self.current_difficulty = difficulty
     diff_cfg = self.DIFFICULTIES[self.current_difficulty]
+
+    self.player = Player(self.width // 2 - 20, self.height - 50, 40, 20)
     self.enemy_grid = EnemyGrid(self.width, speed=diff_cfg["enemy_speed"])
     self.enemy_fire_chance = diff_cfg["fire_chance"]
     self.player_bullets.clear()
     self.enemy_bullets.clear()
     self.score = 0
-    self.game_over = False</code></pre>
-</div>
+    self.game_over = False</pre>
 
-<div class="task-box">
-  <h4>Task 4: Sound Effects &amp; Audio Feedback <span class="badge">Feature Added</span></h4>
-  <p><strong>Implementation:</strong> Developed <code>game/sound.py</code> using standard library <code>wave</code> and <code>math</code> modules to synthesize pure retro 8-bit arcade audio directly, requiring no external sound packs:</p>
-  <ul>
-    <li><strong>Player Firing:</strong> Downward frequency laser sweep (950 Hz down to 300 Hz) in <code>shoot.wav</code></li>
-    <li><strong>Enemy Destroyed:</strong> Decaying rumble and white-noise crunch in <code>enemy_hit.wav</code></li>
-    <li><strong>Game Over:</strong> 4-tone descending minor arpeggio (360 Hz &rarr; 300 Hz &rarr; 240 Hz &rarr; 180 Hz) in <code>game_over.wav</code></li>
-  </ul>
-<pre><code>class SoundManager:
+<h3 class="sub-title">Task 4: Sound Effects</h3>
+<p><strong>Fix:</strong> Used Python's wave and math modules to synthesize 8-bit retro arcade sound effects without requiring external sound files:</p>
+<ul>
+  <li><strong>Player shoot:</strong> Laser frequency sweep (<code>shoot.wav</code>)</li>
+  <li><strong>Enemy hit:</strong> Explosion noise (<code>enemy_hit.wav</code>)</li>
+  <li><strong>Game over:</strong> Descending arpeggio sequence (<code>game_over.wav</code>)</li>
+</ul>
+<pre>class SoundManager:
     def __init__(self):
-        # Initializes pygame.mixer and loads synthesized 8-bit sound effects
         self.shoot_sound = pygame.mixer.Sound("game/assets/sounds/shoot.wav")
         self.hit_sound = pygame.mixer.Sound("game/assets/sounds/enemy_hit.wav")
         self.game_over_sound = pygame.mixer.Sound("game/assets/sounds/game_over.wav")
 
     def play_shoot(self): self.shoot_sound.play()
     def play_enemy_hit(self): self.hit_sound.play()
-    def play_game_over(self): self.game_over_sound.play()</code></pre>
-</div>
+    def play_game_over(self): self.game_over_sound.play()</pre>
 
-<h3>4. AI / LLM Pair-Programming Evidence Summary</h3>
-<table class="links-table">
-  <tr>
-    <th style="width: 25%;">Phase</th>
-    <th>Prompt &amp; Interaction Objective</th>
-    <th style="width: 25%;">Resolution</th>
-  </tr>
-  <tr>
-    <td><strong>1. Setup &amp; Debugging</strong></td>
-    <td>Diagnose why bullets occasionally passed straight through enemy blocks.</td>
-    <td>Identified in-place list mutation during <code>for</code> loop; resolved using slice copy <code>[:]</code>.</td>
-  </tr>
-  <tr>
-    <td><strong>2. Before-Bug Reproduction</strong></td>
-    <td>Automate simulation to isolate and visually demonstrate skipped collision frames.</td>
-    <td>Built <code>generate_before_video.py</code> generating 10s video of the skipped collision bug.</td>
-  </tr>
-  <tr>
-    <td><strong>3. UI &amp; State Management</strong></td>
-    <td>Replace console print with Pygame graphical Game Over card and score.</td>
-    <td>Created translucent alpha surface overlay and input-listening modal.</td>
-  </tr>
-  <tr>
-    <td><strong>4. Gameplay Tuning</strong></td>
-    <td>Add Easy, Medium, Hard replay options and adjust enemy projectile frequency.</td>
-    <td>Integrated <code>DIFFICULTIES</code> dictionary, HUD indicator, and instant restart hotkeys.</td>
-  </tr>
-  <tr>
-    <td><strong>5. Audio Engineering</strong></td>
-    <td>Provide audio feedback for player firing, enemy destruction, and game over.</td>
-    <td>Synthesized standalone retro arcade <code>.wav</code> files with <code>wave</code> module.</td>
-  </tr>
-</table>
+<h2 class="section-title">4. Prompts &amp; AI Pair Programming Summary</h2>
+<ul>
+  <li><strong>Prompt 1:</strong> Investigated why bullets passed through enemies without hitting them. AI explained in-place list modification during iteration and suggested <code>self.player_bullets[:]</code>.</li>
+  <li><strong>Prompt 2:</strong> Created an automated simulation to reproduce and record the 10-second before-video showing the skipped bullet collision bug.</li>
+  <li><strong>Prompt 3:</strong> Designed and implemented the graphical Game Over screen, replacing the terminal print statement with an in-game screen overlay.</li>
+  <li><strong>Prompt 4:</strong> Added difficulty options (Easy, Medium, Hard) and replay functionality.</li>
+  <li><strong>Prompt 5:</strong> Generated retro sound effects using standard library <code>wave</code> module and connected sound playback to player firing, enemy destruction, and game over.</li>
+</ul>
 
 </body>
 </html>
