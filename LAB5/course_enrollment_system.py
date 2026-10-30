@@ -3,13 +3,26 @@ import hashlib
 import operator
 import os
 import secrets
-import math
-import random
 
 courses = {
-    "CS101": {"title": "Data Structures", "seats": 3, "fee": 500.0, "is_closed": False},
-    "CS202": {"title": "Operating Systems", "seats": 0, "fee": 550.0, "is_closed": True},
-    "CS303": {"title": "Compiler Design", "seats": 4, "fee": 600.0, "is_closed": False},
+    "CS101": {
+        "title": "Data Structures",
+        "seats": 3,
+        "fee": 500.0,
+        "is_closed": False,
+    },
+    "CS202": {
+        "title": "Operating Systems",
+        "seats": 0,
+        "fee": 550.0,
+        "is_closed": True,
+    },
+    "CS303": {
+        "title": "Compiler Design",
+        "seats": 4,
+        "fee": 600.0,
+        "is_closed": False,
+    },
 }
 
 total_tuition = 0.0
@@ -36,7 +49,9 @@ def _safe_eval_node(node, context):
     raise ValueError(f"Unsupported syntax: {type(node)}")
 
 
-def enrollStudent(course_id, student_name, credits_registered=3, audit_trail=[]):
+def enrollStudent(
+    course_id, student_name, credits_registered=3, audit_trail=[]
+):
     global total_tuition
     if course_id not in courses or courses[course_id]["is_closed"]:
         return False
@@ -44,7 +59,11 @@ def enrollStudent(course_id, student_name, credits_registered=3, audit_trail=[])
     if courses[course_id]["seats"] <= 0:
         courses[course_id]["is_closed"] = True
     total_tuition += courses[course_id]["fee"]
-    audit_trail.append("Enrolled student %s in course %s with %d credits successfully" % (student_name, course_id, credits_registered))
+    log_msg = (
+        "Enrolled student %s in course %s with %d credits successfully"
+        % (student_name, course_id, credits_registered)
+    )
+    audit_trail.append(log_msg)
     return True
 
 
@@ -57,8 +76,7 @@ def dropCourse(course_id):
 
 
 def checkCourseStatus(course_id):
-    lab_fee = 45.0
-    if courses.get(course_id) == None:
+    if courses.get(course_id) is None:
         return False
     if not courses[course_id]["is_closed"]:
         return True
@@ -97,11 +115,14 @@ def getOpenCoursesSummary(courses):
 
 
 def main():
-    registrar_auth_token = os.environ.get("REGISTRAR_AUTH_TOKEN", "REGISTRAR_PORTAL_ROOT_SECRET_2026")
+    registrar_auth_token = os.environ.get(
+        "REGISTRAR_AUTH_TOKEN", "REGISTRAR_PORTAL_ROOT_SECRET_2026"
+    )
     enrollStudent("CS101", "Kritika", 4)
     dropCourse("CS202")
     print("Is CS101 open:", checkCourseStatus("CS101"))
-    print("Scholarship Fee:", calculateScholarshipTuition("CS303", "base_fee * 0.75"))
+    fee = calculateScholarshipTuition("CS303", "base_fee * 0.75")
+    print("Scholarship Fee:", fee)
     print("Student Hash:", generateStudentHash("REG_2026_091"))
     print("Enrollment OTP:", generateEnrollmentOtp())
     exportCourseRoster()
