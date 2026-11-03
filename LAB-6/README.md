@@ -1,7 +1,10 @@
 # Lab 6: Code and Branch Coverage Analysis
 
 **Student SRN:** PES1UG24CS417  
-**Module:** Software Engineering Lab  
+**Student Name:** Samrudh Patil  
+**Roll No:** 52  
+**Semester:** 5  
+**Course:** Software Engineering (UE22CS351A)  
 
 ---
 
@@ -19,11 +22,14 @@ Application under test: [`visa_application.py`](visa_application.py) — calcula
 
 | File | Description | Target Coverage | Achieved Coverage |
 | :--- | :--- | :--- | :--- |
-| [`CodeCoverageTest_visa_application.py`](CodeCoverageTest_visa_application.py) | Test cases targeting line/statement coverage | $\ge 90\%$ | **100% Statements** (37/37) |
+| [`Lab6_PES1UG24CS417.pdf`](Lab6_PES1UG24CS417.pdf) | **Consolidated Submission PDF Report** with all screenshots, analysis & reflections | - | **Submitted** |
+| [`CodeCoverageTest_visa_application.py`](CodeCoverageTest_visa_application.py) | Separate test file targeting line/statement coverage | $\ge 90\%$ | **100% Statements** (37/37) |
 | [`code_coverage_screenshot.png`](code_coverage_screenshot.png) | Terminal output screenshot for code coverage | - | Verified |
-| [`BranchCoverageTest_visa_application.py`](BranchCoverageTest_visa_application.py) | Comprehensive test cases targeting all decision branches | $\ge 90\%$ | **100% Branches** (26/26 branches) |
+| [`BranchCoverageTest_visa_application.py`](BranchCoverageTest_visa_application.py) | Separate test file targeting all decision branches | $\ge 90\%$ | **100% Branches** (26/26 branches) |
 | [`branch_coverage_screenshot.png`](branch_coverage_screenshot.png) | Terminal output screenshot for branch coverage | - | Verified |
-| [`test_visa_application.py`](test_visa_application.py) | Complete test suite covering all branches and edge cases | $\ge 90\%$ | **100% Statements & Branches** |
+| [`test_visa_application.py`](test_visa_application.py) | Full test suite covering all branches and edge cases | $\ge 90\%$ | **100% Statements & Branches** |
+| [`baseline_coverage_screenshot.png`](baseline_coverage_screenshot.png) | Starter test coverage report (Initial Line: 38%, Branch: 32%) | - | Documented |
+| [`git_log_screenshot.png`](git_log_screenshot.png) | Git commit history verification | - | Verified |
 
 ---
 
